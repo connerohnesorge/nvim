@@ -5,6 +5,7 @@ return {
       "fredrikaverpil/neotest-golang",
       version = "*", -- Optional, but recommended; track releases
     },
+    -- "lawrence-laz/neotest-zig",
     "rouge8/neotest-rust",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
