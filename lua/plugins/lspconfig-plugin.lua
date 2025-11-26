@@ -187,12 +187,15 @@ return {
           vim.lsp.buf.format,
           { buffer = args.buf, desc = '[C]ode [F]ormat' }
         )
-        vim.keymap.set(
-          'n',
-          '<leader>ca',
-          vim.lsp.buf.code_action,
-          { buffer = args.buf, desc = '[C]ode [A]ction' }
-        )
+        -- vim.keymap.set(
+        --   'n',
+        --   '<leader>ca',
+        --   vim.lsp.buf.code_action,
+        --   { buffer = args.buf, desc = '[C]ode [A]ction' }
+        -- )
+        vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+          require("tiny-code-action").code_action()
+        end, { noremap = true, silent = true })
         vim.keymap.set(
           'n',
           '<leader>ls',
