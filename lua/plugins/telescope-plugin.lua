@@ -1,7 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
-  -- tag = '0.1.9',
-  ref = '84b9ba066d1860f7a586ce9cd732fd6c4f77d1d9',
+  tag = 'v0.2.0',
   event = 'BufWinEnter',
   dependencies = {
     'nvim-telescope/telescope-media-files.nvim',

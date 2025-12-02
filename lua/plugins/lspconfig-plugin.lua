@@ -29,6 +29,7 @@ return {
     servers = {
       -- phpactor = {},
       -- volar = {},
+      svelte_ls = {},
       vue_ls = {},
       -- harper_ls = {
       --   settings = {
