@@ -111,7 +111,16 @@ return {
       rust_analyzer = {},
       texlab = {},
       vhdl_ls = {},
-      tailwindcss = {},
+      tailwindcss = {
+        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        settings = {
+          tailwindCSS = {
+            includeLanguages = {
+              templ = "html",
+            },
+          },
+        },
+      },
       hdl_checker = {},
       jsonls = {},
       yamlls = {},
