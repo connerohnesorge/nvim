@@ -29,6 +29,7 @@ return {
     servers = {
       -- phpactor = {},
       -- volar = {},
+      svelte_ls = {},
       vue_ls = {},
       -- harper_ls = {
       --   settings = {
@@ -110,7 +111,16 @@ return {
       rust_analyzer = {},
       texlab = {},
       vhdl_ls = {},
-      tailwindcss = {},
+      tailwindcss = {
+        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        settings = {
+          tailwindCSS = {
+            includeLanguages = {
+              templ = "html",
+            },
+          },
+        },
+      },
       hdl_checker = {},
       jsonls = {},
       yamlls = {},
@@ -187,12 +197,15 @@ return {
           vim.lsp.buf.format,
           { buffer = args.buf, desc = '[C]ode [F]ormat' }
         )
-        vim.keymap.set(
-          'n',
-          '<leader>ca',
-          vim.lsp.buf.code_action,
-          { buffer = args.buf, desc = '[C]ode [A]ction' }
-        )
+        -- vim.keymap.set(
+        --   'n',
+        --   '<leader>ca',
+        --   vim.lsp.buf.code_action,
+        --   { buffer = args.buf, desc = '[C]ode [A]ction' }
+        -- )
+        vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+          require("tiny-code-action").code_action()
+        end, { noremap = true, silent = true })
         vim.keymap.set(
           'n',
           '<leader>ls',
