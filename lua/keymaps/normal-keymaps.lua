@@ -12,12 +12,12 @@ vim.keymap.set("n", "<C-e>", function()
   local cwd = vim.fn.expand("%:p:h")
   local path = vim.fn.expand("%:p")
   if string.match(cwd, "oil") then
-    vim.cmd("!dolphin " .. " . ")
+    vim.cmd("!open " .. " . ")
   else
-    vim.cmd("!dolphin --select" .. " " .. path)
+    vim.cmd("!open " .. path)
   end
 end, {
-  desc = "Open the current working directory in the file explorer for windows"
+  desc = "Open the current working directory in the file explorer"
 })
 
 vim.api.nvim_set_keymap("n", "<A-j>", "<cmd>m .+1<cr>==", {
