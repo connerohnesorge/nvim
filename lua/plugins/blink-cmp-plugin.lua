@@ -21,6 +21,11 @@ return {
 
       providers = {
         -- dont show LuaLS require statements when lazydev has items
+        path = {
+          opts = {
+            show_hidden_files_by_default = true,
+          },
+        },
         lsp = {
           fallbacks = { "path", "buffer", "snippets" },
         },
