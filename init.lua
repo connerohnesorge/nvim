@@ -48,8 +48,9 @@ require "keymaps.normal-keymaps"
 vim.o.statusline = vim.o.statusline .. "%F"
 
 -- Register the .templ filetype
-vim.filetype.add { extension = { templ = "templ", } }
+vim.filetype.add { extension = { templ = "templ", svelte = "svelte" } }
 vim.treesitter.language.register("templ", "templ")
+vim.treesitter.language.register("svelte", "svelte")
 
 -- vim.cmd "set list"
 -- vim.cmd("set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<")

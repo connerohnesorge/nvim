@@ -6,3 +6,4 @@ lazy-lock.json
 ltex.dictionary.en-US.txt
 .env
 .env/
+.DS_Store

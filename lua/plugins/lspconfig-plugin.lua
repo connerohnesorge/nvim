@@ -10,7 +10,6 @@ return {
     'j-hui/fidget.nvim',
     "folke/lazydev.nvim",
     "folke/neoconf.nvim",
-    'hrsh7th/vim-vsnip',
     'nvim-treesitter/nvim-treesitter',
     'nvim-tree/nvim-web-devicons',
   },
@@ -29,8 +28,8 @@ return {
     servers = {
       -- phpactor = {},
       -- volar = {},
-      svelte_ls = {},
       vue_ls = {},
+      
       -- harper_ls = {
       --   settings = {
       --     ["harper-ls"] = {
@@ -112,22 +111,34 @@ return {
       texlab = {},
       vhdl_ls = {},
       tailwindcss = {
-        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        filetypes = { "templ", "astro", "javascript", "typescript", "react", "svelte" },
         settings = {
           tailwindCSS = {
             includeLanguages = {
               templ = "html",
+              svelte = "html",
             },
           },
         },
       },
       hdl_checker = {},
       jsonls = {},
-      yamlls = {},
+      -- yamlls = {},
       -- verible = {},
       dockerls = {},
       -- astro = {},
-      svelte = {},
+      svelte = {
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+        },
+        on_attach = function(client, _)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+      },
       -- htmx = {},
       -- hyprls = {},
       cssls = {},

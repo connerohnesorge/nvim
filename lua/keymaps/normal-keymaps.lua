@@ -12,7 +12,16 @@ vim.keymap.set("n", "<C-e>", function()
   local cwd = vim.fn.expand("%:p:h")
   local path = vim.fn.expand("%:p")
   if string.match(cwd, "oil") then
-    vim.cmd("!open " .. " . ")
+    -- local os = vim.fn.system('uname -s')
+    -- if os == 'Darwin' then
+    --   -- macOS-specific settings
+    --   vim.print("marta")
+    --   vim.cmd("!marta " .. " . ")
+    -- elseif os == 'Linux' then
+    --   -- Linux-specific settings
+    --   vim.print("marta")
+      vim.cmd("!open " .. " . ")
+    -- end
   else
     vim.cmd("!open " .. path)
   end
