@@ -169,9 +169,37 @@ return {
   },
   config = function(_, opts)
     vim.filetype.add({ extension = { templ = "templ" } })
-    local blink = require('blink.cmp')
+    -- Same table blink.cmp's get_lsp_capabilities() returns. Inlined so the
+    -- first LSP client gets it without loading blink.cmp on BufReadPost
+    -- (blink loads at VeryLazy and re-registers the same '*' capabilities).
+    vim.lsp.config('*', {
+      capabilities = {
+        textDocument = {
+          completion = {
+            completionItem = {
+              snippetSupport = true,
+              commitCharactersSupport = false,
+              documentationFormat = { 'markdown', 'plaintext' },
+              deprecatedSupport = true,
+              preselectSupport = false,
+              tagSupport = { valueSet = { 1 } },
+              insertReplaceSupport = true,
+              resolveSupport = {
+                properties = { 'documentation', 'detail', 'additionalTextEdits', 'command', 'data' },
+              },
+              insertTextModeSupport = { valueSet = { 1 } },
+              labelDetailsSupport = true,
+            },
+            completionList = {
+              itemDefaults = { 'commitCharacters', 'editRange', 'insertTextFormat', 'insertTextMode', 'data' },
+            },
+            contextSupport = true,
+            insertTextMode = 1,
+          },
+        },
+      },
+    })
     for server, config in pairs(opts.servers) do
-      config.capabilities = blink.get_lsp_capabilities(config.capabilities)
       vim.lsp.config(server, config)
       vim.lsp.enable(server)
     end
