@@ -1,0 +1,132 @@
+{
+  "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777699697,
+        "narHash": "sha256-Eg9b/rq/ECYwNwEXs5i9wHyhxNI0JrYx2srdI2uZMaQ=",
+        "ref": "refs/heads/main",
+        "rev": "382052b74656a369c5408822af3f2501e9b1af81",
+        "revCount": 94,
+        "type": "git",
+        "url": "https://git.lix.systems/lix-project/flake-compat.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.lix.systems/lix-project/flake-compat.git"
+      }
+    },
+    "gopher-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787854150,
+        "narHash": "sha256-Bwf8Nt4SuB7UPE67jCVkIzsTu/rDjUr8oemlK6vbxAA=",
+        "owner": "olexsmir",
+        "repo": "gopher.nvim",
+        "rev": "f397bed1c35f29f4f85d60a210650e677a8c5cb4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olexsmir",
+        "repo": "gopher.nvim",
+        "type": "github"
+      }
+    },
+    "mnw": {
+      "locked": {
+        "lastModified": 1784154424,
+        "narHash": "sha256-HRn4O1X2ShYtbq5Egji72/aemyc2cIQicjRZD9hBqM8=",
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "rev": "0151d9fa87992cbeb67c86616fb9170dcec830b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792094642,
+        "narHash": "sha256-zp8ToDMnqZcu4o4IH9pdwXFXGp7yLm/M0dEnNWnyd7I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "fe13242281a67641c0102cdb1087f0ebe586c7df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nvf": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "mnw": "mnw",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792175215,
+        "narHash": "sha256-XD64JVLV8iE4lR+W5gkTweEaT+SBwOrSy0+le2WgITI=",
+        "owner": "notashelf",
+        "repo": "nvf",
+        "rev": "a736b60b1e2019931168979951c94dc46e342957",
+        "type": "github"
+      },
+      "original": {
+        "owner": "notashelf",
+        "repo": "nvf",
+        "type": "github"
+      }
+    },
+    "nvim-macros": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708105989,
+        "narHash": "sha256-UDmMx4myoj0hx78C682BKMJ6RE0RQ/ilQatmMPGHtg8=",
+        "owner": "kr40",
+        "repo": "nvim-macros",
+        "rev": "f29d08ee7844ed6c9552699206e8c977d6936ee4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kr40",
+        "repo": "nvim-macros",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "gopher-nvim": "gopher-nvim",
+        "nixpkgs": "nixpkgs",
+        "nvf": "nvf",
+        "nvim-macros": "nvim-macros",
+        "sad-nvim": "sad-nvim"
+      }
+    },
+    "sad-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746064421,
+        "narHash": "sha256-CBX1EAch/cAE432g8/Tt8QqU8tIkTviXVdRyOwRyNEo=",
+        "owner": "ray-x",
+        "repo": "sad.nvim",
+        "rev": "e7511767b59fcff237cc7209d47d08aba64b9f63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ray-x",
+        "repo": "sad.nvim",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

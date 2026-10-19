@@ -42,11 +42,11 @@ return {
               if vim.bo.filetype == 'markdown' then
                 local bufname = vim.api.nvim_buf_get_name(0)
                 if bufname:match("^/tmp/claude%-prompt%-.+%.md$") then
-                  return { vim.fn.expand('~/.config/nvim/dictionary/markdown-claude.dict') }
+                  return vim.api.nvim_get_runtime_file('dictionary/markdown-claude.dict', false)
                 end
-                return { vim.fn.expand('~/.config/nvim/dictionary/markdown.dict') }
+                return vim.api.nvim_get_runtime_file('dictionary/markdown.dict', false)
               end
-              return { vim.fn.expand('~/.config/nvim/dictionary/words.dict') }
+              return vim.api.nvim_get_runtime_file('dictionary/words.dict', false)
             end,
             -- options for blink-cmp-dictionary
           }

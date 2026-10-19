@@ -1,9 +1,18 @@
 --  (otherwise wrong leader will be used)
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = " "
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+-- Set by flake.nix: a store directory holding every plugin by lazy.nvim name.
+local nix_plugins = vim.g.nix_plugins
+local lazypath = nix_plugins and (nix_plugins .. "/lazy.nvim")
+  or (vim.fn.stdpath "data" .. "/lazy/lazy.nvim")
+if nix_plugins then
+  -- appname is "nvim"; drop ~/.config/nvim from rtp so only the store copy of this config loads.
+  local config = vim.fn.stdpath "config"
+  vim.opt.rtp:remove(config)
+  vim.opt.rtp:remove(config .. "/after")
+end
 vim.diagnostic.config({ virtual_text = true })
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not nix_plugins and not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system {
     "git",
     "clone",
@@ -15,13 +24,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
-require("lazy").setup {
+require("lazy").setup({
   { "Bilal2453/luvit-meta", lazy = true },
   { "tpope/vim-sleuth" },
   {
     import = "plugins",
   },
-}
+}, nix_plugins and {
+  dev = { path = nix_plugins, patterns = { "" }, fallback = false },
+  install = { missing = false },
+  checker = { enabled = false },
+  change_detection = { enabled = false },
+  -- Keep nvf's packpath (treesitter grammars) and runtimepath.
+  performance = { reset_packpath = false, rtp = { reset = false } },
+} or nil)
 
 require "conneroisu.options"
 

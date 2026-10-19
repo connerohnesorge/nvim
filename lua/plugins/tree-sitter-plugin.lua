@@ -67,7 +67,6 @@ return {
       "javascript",
       "jsdoc",
       "json",
-      "jsonc",
       "kotlin",
       "latex",
       "lua",
@@ -92,7 +91,7 @@ return {
       "toml",
       "tsx",
       "typescript",
-      "verilog",
+      "systemverilog",
       "vhdl",
       "vhs",
       "vim",
@@ -179,5 +178,31 @@ return {
   config = function(_, opts)
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter').setup(opts)
+    -- The main branch ignores `ensure_installed`. flake.nix ships the grammars.
+    if vim.g.nix_plugins == nil then
+      require('nvim-treesitter').install(opts.ensure_installed)
+    end
+    -- The main branch ignores `highlight`/`indent` opts; start treesitter per buffer.
+    local function start(buf)
+      local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+      if not lang or opts.highlight.disable(lang, buf) then
+        return
+      end
+      if pcall(vim.treesitter.start, buf, lang) then
+        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+    end
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("TreesitterStart", { clear = true }),
+      callback = function(args)
+        start(args.buf)
+      end,
+    })
+    -- Buffers opened before this lazy-loaded plugin already fired FileType.
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype ~= "" then
+        start(buf)
+      end
+    end
   end,
 }
