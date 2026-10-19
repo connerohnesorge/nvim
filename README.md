@@ -65,6 +65,33 @@ git clone https://github.com/conneroisu/conneroisu-nvim %USERPROFILE%\AppData\Lo
 nvim
 ```
 
+## Run with Nix
+
+`flake.nix` builds this config with [nvf](https://nvf.notashelf.dev). Every plugin and treesitter grammar comes from the Nix store, so nothing is cloned at runtime. It needs Nix with flakes enabled.
+
+```bash
+nix run github:conneroisu/nvim
+```
+
+Pass Neovim arguments after `--`:
+
+```bash
+nix run github:conneroisu/nvim -- file.go
+```
+
+From a local checkout, run `nix run .#`.
+
+The first run downloads about 300 treesitter grammars and all plugins, so it is slow. State (macros, snippets, undo, shada) lives in the normal `~/.config/nvim` and `~/.local/share/nvim` directories, the same as plain `nvim`.
+
+On a Pantheon computer, the build can fail with `chmod: ... Operation not permitted` because `/nix/var/nix/builds` has the setgid bit. Use a build directory without it:
+
+```bash
+mkdir -p ~/nix-build
+nix run --option build-dir ~/nix-build github:conneroisu/nvim
+```
+
+Adding a plugin spec under `lua/plugins` also requires adding it to the `plugins` set in `flake.nix`.
+
 ## Customizing Plugin Specifications with Lazy 
 
 Defaults merging rules:
