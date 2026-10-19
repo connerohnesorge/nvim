@@ -50,13 +50,13 @@ Languages setup for:
 For example, for linux and MacOS:
 
 ```bash
-git clone https://github.com/conneroisu/nvim ~/.config/nvim
+git clone https://github.com/connerohnesorge/nvim ~/.config/nvim
 ```
 
 For windows:
 
 ```bash
-git clone https://github.com/conneroisu/conneroisu-nvim %USERPROFILE%\AppData\Local\nvim
+git clone https://github.com/connerohnesorge/nvim %USERPROFILE%\AppData\Local\nvim
 ```
 
 2. Open Neovim.
@@ -70,13 +70,13 @@ nvim
 `flake.nix` builds this config with [nvf](https://nvf.notashelf.dev). Every plugin and treesitter grammar comes from the Nix store, so nothing is cloned at runtime. It needs Nix with flakes enabled.
 
 ```bash
-nix run github:conneroisu/nvim
+nix run github:connerohnesorge/nvim
 ```
 
 Pass Neovim arguments after `--`:
 
 ```bash
-nix run github:conneroisu/nvim -- file.go
+nix run github:connerohnesorge/nvim -- file.go
 ```
 
 From a local checkout, run `nix run .#`.
@@ -87,7 +87,7 @@ On a Pantheon computer, the build can fail with `chmod: ... Operation not permit
 
 ```bash
 mkdir -p ~/nix-build
-nix run --option build-dir ~/nix-build github:conneroisu/nvim
+nix run --option build-dir ~/nix-build github:connerohnesorge/nvim
 ```
 
 Adding a plugin spec under `lua/plugins` also requires adding it to the `plugins` set in `flake.nix`.
